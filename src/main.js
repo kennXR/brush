@@ -1,3 +1,7 @@
+/*
+
+MALA PRÁCTICA FUNCIONAMIENTO PRINCIPAL
+
 var point_a = {
   x: window.innerWidth/2,
   y: window.innerHeight/2
@@ -62,4 +66,41 @@ window.windowResized = () => {
 resizeCanvas(windowWidth, windowHeight);
 background('black'); 
 
+};*/
+
+import Point from './js/components/point.js';
+
+const TOTAL_POINTS = 10;
+const PALETTE = ['#67191F', '#AB3130', '#FFF08F', '#51355A', '#2A0C4E'];
+const bg = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+let points = [];
+
+
+window.setup = (event) => {
+  for (let i = 1; i <= TOTAL_POINTS; i++) {
+    const randomColor = PALETTE[Math.floor(Math.random() * PALETTE.length)]
+    const point = new Point({
+      fill: randomColor,
+      stroke: 0,
+      size: 300 - (20 * i),
+      friction: i * 0.1
+    })
+
+
+    points.push(point);//metodo de arrglo para que se itere y no sea un arreglo vacío
+  };
+  createCanvas(windowWidth, windowHeight);
 };
+
+window.draw = (event) => {
+  background('bg');
+  for (let i = 0; i < points.length; i++) {
+    points[i].draw();
+  };
+};
+
+window.windowResized = (event) => {
+  resizeCanvas(windowWidth, windowHeight);
+  background('bg');
+};
+
