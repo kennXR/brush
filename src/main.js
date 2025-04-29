@@ -93,7 +93,7 @@ window.setup = (event) => {
 };
 
 window.draw = (event) => {
-  background('bg');
+  background(bg);
   for (let i = 0; i < points.length; i++) {
     points[i].draw();
   };
